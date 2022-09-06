@@ -28,8 +28,8 @@ public class TeacherController {
     }
 
     @PostMapping("/{idTeacher}/{idVehicle}")
-    public Teacher addVehicleToTeacher(@PathVariable Integer idTeacher, @PathVariable Integer idCar){
-        return teacherService.addVehicleToTeacher(idTeacher, idCar);
+    public Teacher addVehicleToTeacher(@PathVariable Integer idTeacher, @PathVariable Integer idVehicle){
+        return teacherService.addVehicleToTeacher(idTeacher, idVehicle);
     }
 
     @GetMapping
