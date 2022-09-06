@@ -23,4 +23,11 @@ public class VehiclesService {
     public List<Vehicles> getAllVehicles() {
         return vehiclesRepository.findAll();
     }
+
+    public Vehicles getVehicle(Integer idCar) {
+        if(vehiclesRepository.findById(idCar).isPresent()){
+              return vehiclesRepository.findById(idCar).get();
+        }
+        return null;
+    }
 }

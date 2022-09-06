@@ -20,9 +20,6 @@ public class Teacher {
 
     private String subject;
 
-    @ManyToOne
-    private School school;
-
     @OneToOne(mappedBy = "teacher")
     private ParkingSpot parkingSpot;
 

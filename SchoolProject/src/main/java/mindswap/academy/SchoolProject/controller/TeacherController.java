@@ -1,7 +1,9 @@
 package mindswap.academy.SchoolProject.controller;
 
 import mindswap.academy.SchoolProject.model.Teacher;
+import mindswap.academy.SchoolProject.model.Vehicles;
 import mindswap.academy.SchoolProject.service.TeacherService;
+import mindswap.academy.SchoolProject.service.VehiclesService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +20,16 @@ public class TeacherController {
     @PostMapping
     public Teacher createTeacher(@RequestBody Teacher teacher){
         return teacherService.createTeacher(teacher);
+    }
+
+   @PostMapping("/addVehicle")
+    public Vehicles createVehicles(@RequestBody Vehicles vehicles){
+        return teacherService.createVehicle(vehicles);
+    }
+
+    @PostMapping("/{idTeacher}/{idVehicle}")
+    public Teacher addVehicleToTeacher(@PathVariable Integer idTeacher, @PathVariable Integer idCar){
+        return teacherService.addVehicleToTeacher(idTeacher, idCar);
     }
 
     @GetMapping

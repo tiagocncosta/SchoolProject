@@ -18,6 +18,4 @@ public class ParkingSpot {
     @OneToOne
     private Teacher teacher;
 
-    @ManyToOne
-    private School school;
 }
