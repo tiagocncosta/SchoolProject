@@ -1,38 +1,26 @@
 package mindswap.academy.SchoolProject.service;
 
+import mindswap.academy.SchoolProject.command.teacher.CreateTeacherDto;
+import mindswap.academy.SchoolProject.command.teacher.TeacherDto;
+import mindswap.academy.SchoolProject.command.teacher.TeacherWitCarDto;
+import mindswap.academy.SchoolProject.command.vehicles.CreateVehiclesDto;
+import mindswap.academy.SchoolProject.command.vehicles.VehicleDto;
 import mindswap.academy.SchoolProject.model.Teacher;
-import mindswap.academy.SchoolProject.model.Vehicles;
-import mindswap.academy.SchoolProject.repository.TeacherRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class TeacherService {
-    private TeacherRepository teacherRepository;
-    private VehiclesService vehiclesService;
+public interface TeacherService {
+    List<TeacherWitCarDto> getAllTeachersWithACarFromTheSameBrand(String vehicleBrand);
 
-    public TeacherService(TeacherRepository teacherRepository,VehiclesService vehiclesService) {
-        this.teacherRepository = teacherRepository;
-        this.vehiclesService = vehiclesService;
-    }
+    TeacherDto createTeacher(CreateTeacherDto teacher);
 
-    public Teacher createTeacher(Teacher teacher) {
-        return teacherRepository.save(teacher);
-    }
+    TeacherDto getTeacherById(Integer idTeacher);
 
-    public List<Teacher> getTeachersList() {
-        return teacherRepository.findAll();
-    }
+    Teacher getTeacherEntityById(Integer idTeacher);
 
-    public Vehicles createVehicle(Vehicles vehicles) {
-        return vehiclesService.createVehicle(vehicles);
-    }
+    List<TeacherDto> getTeachersList();
 
-    public Teacher addVehicleToTeacher(Integer idTeacher, Integer idCar) {
-        Vehicles vehicles = vehiclesService.getVehicle(idCar);
-        Teacher teacher = teacherRepository.findById(idTeacher).get();
-        teacher.getVehicles().add(vehicles);
-        return teacher;
-    }
+    VehicleDto createVehicle(CreateVehiclesDto vehicles);
+
+    TeacherDto addVehicleToTeacher(Integer idTeacher, Integer idCar);
 }

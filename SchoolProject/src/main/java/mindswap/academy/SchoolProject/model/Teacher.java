@@ -1,8 +1,12 @@
 package mindswap.academy.SchoolProject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import mindswap.academy.SchoolProject.command.garage.GarageDto;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -13,22 +17,25 @@ import java.util.Set;
 @ToString
 public class Teacher {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
     private String subject;
+    private String password;
 
-    @OneToOne(mappedBy = "teacher")
+
+    @OneToOne
+    @JsonIgnore
     private ParkingSpot parkingSpot;
 
-    @OneToMany(
-            cascade = {CascadeType.ALL},
-            orphanRemoval = true,
-            mappedBy = "teacher"
-    )
-    private Set<Vehicles> vehicles;
+    @OneToMany(mappedBy = "teacher")
+    private List<Vehicles> vehicles;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Garage> garagesList;
 
 
 

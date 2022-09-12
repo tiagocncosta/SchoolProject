@@ -1,19 +1,20 @@
 package mindswap.academy.SchoolProject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @ToString
 public class Vehicles {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String fuel;
@@ -24,7 +25,8 @@ public class Vehicles {
 
     private String type;
 
-    @ManyToOne
+   @ManyToOne
+   @JsonIgnore
     private Teacher teacher;
 
 }
